@@ -21,11 +21,12 @@ class PostgresConnection:
            Postgres connection
         """
         return psycopg2.connect(
+            host=self.config['HOST'],
             database=self.config['POSTGRES_DB'],
             user=self.config['POSTGRES_USER'],
             password=self.config['POSTGRES_PASSWORD'],
             port=self.config['HOST_PORT'])
-    
+
     def read_sql(self, sql: str) -> pd.DataFrame:
         """
         Download the sql statement from postgres server
@@ -37,7 +38,7 @@ class PostgresConnection:
             pd.DataFrame: DataFrame with result
         """
         return pd.read_sql(sql, self._connection())
-    
+
     def read_table(self, table: str) -> pd.DataFrame:
         """
         Return sql results as a table
