@@ -50,3 +50,19 @@ class PostgresConnection:
             pd.DataFrame: Table as a DataFrame
         """
         return self.read_sql(sql=f"SELECT * from {table}")
+
+    def execute_query(self, sql: str) -> None:
+        """
+        Execute a query on the postgres connection
+
+        Args:
+            sql (str): The query to execute
+        """
+        conn = self._connection()
+
+        cursor = conn.cursor()
+
+        cursor.execute(sql)
+
+        conn.commit()
+        conn.close()
