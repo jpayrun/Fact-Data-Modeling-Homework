@@ -1,5 +1,5 @@
 
-create table date_list_int (host text, date_list_int integer[]);
+create table date_list_int (host text, date_list_int bit[]);
 
 insert into date_list_int
                 with today as (
